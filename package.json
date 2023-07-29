@@ -1,0 +1,25 @@
+{
+  "name": "react-chatbot",
+  "version": "0.5.4",
+  "description": "React AI ChatBot using chatlas.ai service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx parcel src/index.html"
+  },
+  "author": "rarar89",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
+    "@types/react": "^18.2.17",
+    "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
