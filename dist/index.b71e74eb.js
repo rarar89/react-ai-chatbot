@@ -2939,15 +2939,15 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ChatBotProvider", ()=>(0, _chatBotProvider.ChatBotProvider));
 parcelHelpers.export(exports, "useChatBot", ()=>(0, _useChatBotDefault.default));
-parcelHelpers.export(exports, "useIncoming", ()=>(0, _useIncomingDefault.default));
+parcelHelpers.export(exports, "useIncoming", ()=>(0, _usePendingDefault.default));
 var _chatBotProvider = require("./context/ChatBotProvider");
 var _useChatBot = require("./hooks/useChatBot");
 var _useChatBotDefault = parcelHelpers.interopDefault(_useChatBot);
-var _useIncoming = require("./hooks/useIncoming");
-var _useIncomingDefault = parcelHelpers.interopDefault(_useIncoming);
+var _usePending = require("./hooks/usePending");
+var _usePendingDefault = parcelHelpers.interopDefault(_usePending);
 var _demo = require("./demo");
 
-},{"./context/ChatBotProvider":"14l1H","./hooks/useChatBot":"mCxFB","./hooks/useIncoming":"4aZmZ","./demo":"a6qZE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"14l1H":[function(require,module,exports) {
+},{"./context/ChatBotProvider":"14l1H","./hooks/useChatBot":"mCxFB","./demo":"a6qZE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./hooks/usePending":"DHlvP"}],"14l1H":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8ef9 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -32917,7 +32917,7 @@ const initialState = {
     history: [],
     error: null,
     pendingSourceDocs: [],
-    incoming: "",
+    pendingMessage: "",
     apiEndpoint: null
 };
 const chatbotSlice = (0, _toolkit.createSlice)({
@@ -32942,7 +32942,7 @@ const chatbotSlice = (0, _toolkit.createSlice)({
                 newState.error = payload.error;
                 newState.isError = true;
             }
-            if (payload.pending) newState.incoming = state.incoming + action.payload.pending;
+            if (payload.pending) newState.pendingMessage = state.pendingMessage + action.payload.pending;
             if (payload.sourceDocs) newState.pendingSourceDocs = payload.sourceDocs;
             return newState;
         },
@@ -32959,7 +32959,7 @@ const chatbotSlice = (0, _toolkit.createSlice)({
                     ...state.history,
                     [
                         action.payload.message,
-                        state.incoming ?? "",
+                        state.pendingMessage ?? "",
                         state.pendingSourceDocs
                     ]
                 ],
@@ -32967,7 +32967,7 @@ const chatbotSlice = (0, _toolkit.createSlice)({
                     ...state.messages,
                     {
                         type: "bot",
-                        message: state.incoming ?? "",
+                        message: state.pendingMessage ?? "",
                         sourceDocs: state.pendingSourceDocs
                     }
                 ],
@@ -33419,19 +33419,7 @@ function newMessage() {
     };
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4aZmZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>useIncoming);
-var _reactRedux = require("react-redux");
-function useIncoming() {
-    const incoming = (0, _reactRedux.useSelector)((state)=>state.chatbot.incoming);
-    return {
-        incoming
-    };
-}
-
-},{"react-redux":"bdVon","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a6qZE":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a6qZE":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$2316 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -33445,8 +33433,8 @@ var _client = require("react-dom/client");
 var _useChatBot = require("./hooks/useChatBot");
 var _useChatBotDefault = parcelHelpers.interopDefault(_useChatBot);
 var _chatBotProvider = require("./context/ChatBotProvider");
-var _useIncoming = require("./hooks/useIncoming");
-var _useIncomingDefault = parcelHelpers.interopDefault(_useIncoming);
+var _usePending = require("./hooks/usePending");
+var _usePendingDefault = parcelHelpers.interopDefault(_usePending);
 var _s = $RefreshSig$(), _s1 = $RefreshSig$();
 const ChatBot = ({ children })=>{
     _s();
@@ -33537,14 +33525,14 @@ _s(ChatBot, "NT6rHLT3K4819dZD28tWimMnkOw=", false, function() {
 _c = ChatBot;
 const Incoming = ()=>{
     _s1();
-    const { incoming } = (0, _useIncomingDefault.default)();
+    const { pending } = (0, _usePendingDefault.default)();
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: incoming
+        children: pending
     }, void 0, false);
 };
-_s1(Incoming, "dyOulCVPnSwbz2xuLKijeqAz55c=", false, function() {
+_s1(Incoming, "OMSknIh87IVznlFU4ckemR6C178=", false, function() {
     return [
-        (0, _useIncomingDefault.default)
+        (0, _usePendingDefault.default)
     ];
 });
 _c1 = Incoming;
@@ -33585,7 +33573,7 @@ $RefreshReg$(_c2, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom/client":"lOjBx","./hooks/useChatBot":"mCxFB","./context/ChatBotProvider":"14l1H","./hooks/useIncoming":"4aZmZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lOjBx":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom/client":"lOjBx","./hooks/useChatBot":"mCxFB","./context/ChatBotProvider":"14l1H","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./hooks/usePending":"DHlvP"}],"lOjBx":[function(require,module,exports) {
 "use strict";
 var m = require("aaccff5d309d9239");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
@@ -33606,6 +33594,18 @@ exports.hydrateRoot = function(c, h, o) {
     }
 };
 
-},{"aaccff5d309d9239":"j6uA9"}]},["2oZg2","1xC6H","h7u1C"], "h7u1C", "parcelRequireef96")
+},{"aaccff5d309d9239":"j6uA9"}],"DHlvP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>usePending);
+var _reactRedux = require("react-redux");
+function usePending() {
+    const pending = (0, _reactRedux.useSelector)((state)=>state.chatbot.pendingMessage);
+    return {
+        pending
+    };
+}
+
+},{"react-redux":"bdVon","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["2oZg2","1xC6H","h7u1C"], "h7u1C", "parcelRequireef96")
 
 //# sourceMappingURL=index.b71e74eb.js.map

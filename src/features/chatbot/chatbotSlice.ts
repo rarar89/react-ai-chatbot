@@ -9,7 +9,7 @@ const initialState: IChatbotState = {
   history: [],
   error: null,
   pendingSourceDocs: [],
-  incoming: '',
+  pendingMessage: '',
   apiEndpoint: null
 };
 
@@ -32,7 +32,7 @@ export const chatbotSlice = createSlice({
       }
 
       if(payload.pending) {
-        newState.incoming = state.incoming + action.payload.pending;
+        newState.pendingMessage = state.pendingMessage + action.payload.pending;
       }
 
       if(payload.sourceDocs) {
@@ -48,12 +48,12 @@ export const chatbotSlice = createSlice({
     finishIncoming: (state, action: PayloadAction<Message>) => {
       
       return {...state, ...{
-        history: [...state.history, [action.payload.message, state.incoming ?? '', state.pendingSourceDocs as Document[]]],
+        history: [...state.history, [action.payload.message, state.pendingMessage ?? '', state.pendingSourceDocs as Document[]]],
         messages: [
           ...state.messages,
           {
             type: 'bot',
-            message: state.incoming ?? '',
+            message: state.pendingMessage ?? '',
             sourceDocs: state.pendingSourceDocs as Document[],
           },
         ],

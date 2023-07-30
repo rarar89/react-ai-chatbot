@@ -2,7 +2,7 @@ import { ReactNode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import useChatBot from './hooks/useChatBot';
 import { ChatBotProvider } from './context/ChatBotProvider';
-import useIncoming from './hooks/useIncoming';
+import usePending from './hooks/usePending';
 
 const ChatBot = ({ children } : {children: ReactNode}) => {
 
@@ -34,9 +34,9 @@ const ChatBot = ({ children } : {children: ReactNode}) => {
 
 const Incoming = () => {
 
-  const { incoming } = useIncoming();
+  const { pending } = usePending();
 
-  return <>{incoming}</>;
+  return <>{pending}</>;
 }
 const App = () => {
 

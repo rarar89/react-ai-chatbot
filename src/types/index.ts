@@ -20,7 +20,7 @@ export interface IChatbotState {
   messages: Message[];
   history: [string, string, Document[]][];
   isLoading: boolean;
-  incoming: string;
+  pendingMessage: string;
   pendingSourceDocs: Document[];
   isError: boolean;
   error: string | null;
