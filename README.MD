@@ -1,14 +1,18 @@
-React ChatBot
+# React ChatBot
 
 Simple React AI Chatbot based on GPT-3 or GPT-4 OpenAI models. This component provides hooks for chatbot interaction - sending and receiving messages. UI Styling is completely up to you!
 
-Chatlas.ai is used to set chat context!
+## Chatlas.ai is used to set chat context!
 
 Install
 
-# npm install react-chatbot
+``npm install react-chatbot``
 
-Usage instructions: 
+or
+
+``yarn install react-chatbot``
+
+## Usage instructions: 
 
 1. Singup at chatlas.ai
 
@@ -18,35 +22,14 @@ Usage instructions:
 
 4. Example implementation:
 
-import { ChatBotProvider, useChatBot } from 'react-ai-chatbot';
-
-index.tsx
-
-import { ChatBotProvider } from 'react-ai-chatbot';
-
-const ChatBotWrapper = () => {
-
-  <ChatBotProvider endpoint="<your_discussion_endpoint>">
-    <ChatBot />
-  </ChatBotProvider>
-}
-
-ChatBot.tsx
-
-import { useState } from 'react';
-import { useChatBot } from 'react-ai-chatbot';
-import { Message } from 'react-ai-chatbot/types'
-
-const ChatBot = () => {
+```ts
+const ChatBot = ({ children } : {children: ReactNode}) => {
 
   const [message, setMessage] = useState<string>();
 
-  const {messages, sendMessage, pending, isLoading, isError, error} = useChatBot();
+  const {messages, sendMessage, isLoading, isError, error} = useChatBot();
 
-  const messageChangeHandler = (e) => {
-
-    setMessage(e.target.value);
-  }
+  const messageChangeHandler = (e:any) => setMessage(e.target.value);
 
   const sendMessageHandler = () => {
 
@@ -58,17 +41,35 @@ const ChatBot = () => {
     {isLoading ? <div>loading...</div> : ''}
     {isError ? <div>{error}</div> : ''}
     <div>
-      {messages.map((m, i)=><div>{m.type}: {m.message}</div>)}
+      {messages.map((m, i)=><div key={i}>{m.type}: {m.message}</div>)}
+      <div>{children}</div>
     </div>
     <div>
       <input type="text" value={message} onChange={messageChangeHandler} />
     </div>
+    <button onClick={sendMessageHandler}>Send</button>
   </div>
 }
 
-Documentation
+const Incoming = () => {
 
-useChatBot
+  const { incoming } = useIncoming();
+
+  return <>{incoming}</>;
+}
+const App = () => {
+
+  return <ChatBotProvider endpoint='<your_chat_endpoint>'>
+    <ChatBot>
+      <Incoming />
+    </ChatBot>
+  </ChatBotProvider>
+}
+```
+
+## Documentation
+
+**useChatBot**
   - messages: <[{type: 'bot' | 'user', message: string}]> - Discussion message are stored in this array
   - sendMessage: <(message: string)> - function used to send message
   - incomming: string - message returned on-the-fly upon message generation. Store in a seperate component to not re-render whole chat component
@@ -77,3 +78,6 @@ useChatBot
   - error: string - error message
   - clearMessages: ()=>void - clear all chat messages
   - setEnpoint: (endpoint:string)=>void - set chat endpoint. Can be used to switch to a different chat
+
+**usePending**
+  - pending: string - use to get message while it's being generated, chatgpt style.
