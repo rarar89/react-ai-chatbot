@@ -22,12 +22,12 @@ or
 
 4. Example implementation:
 
-```ts
-const ChatBot = ({ children } : {children: ReactNode}) => {
+```tsx
+const ChatBot = ({ children } : { children: ReactNode }) => {
 
-  const [message, setMessage] = useState<string>();
+  const [ message, setMessage ] = useState<string>();
 
-  const {messages, sendMessage, isLoading, isError, error} = useChatBot();
+  const { messages, sendMessage, isLoading, isError, error } = useChatBot();
 
   const messageChangeHandler = (e:any) => setMessage(e.target.value);
 
@@ -55,11 +55,11 @@ const Incoming = () => {
 
   const { incoming } = useIncoming();
 
-  return <>{incoming}</>;
+  return <>{ incoming }</>;
 }
 const App = () => {
 
-  return <ChatBotProvider endpoint='<your_chat_endpoint>'>
+  return <ChatBotProvider endpoint='<your_discussion_endpoint>'>
     <ChatBot>
       <Incoming />
     </ChatBot>
