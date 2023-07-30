@@ -23,6 +23,9 @@ or
 4. Example implementation:
 
 ```tsx
+import { ReactNode, useState } from 'react';
+import { ChatBotProvider, useChatBot, useIncoming } from 'react-ai-chatbot';
+
 const ChatBot = ({ children } : { children: ReactNode }) => {
 
   const [ message, setMessage ] = useState<string>();
