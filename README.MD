@@ -23,7 +23,7 @@ or
 4. Example implementation:
 
 ```tsx
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, ChangeEvent } from 'react';
 import { ChatBotProvider, useChatBot, usePending } from 'react-ai-chatbot';
 
 const ChatBot = ({ children } : { children: ReactNode }) => {
@@ -32,7 +32,7 @@ const ChatBot = ({ children } : { children: ReactNode }) => {
 
   const { messages, sendMessage, isLoading, isError, error } = useChatBot();
 
-  const messageChangeHandler = (e:any) => setMessage(e.target.value);
+  const messageChangeHandler = (e:ChangeEvent<HTMLInputElement>) => setMessage(e.target.value);
 
   const sendMessageHandler = () => {
 
@@ -60,6 +60,7 @@ const Incoming = () => {
 
   return <>{ incoming }</>;
 }
+
 const App = () => {
 
   return <ChatBotProvider endpoint='<your_discussion_endpoint>'>

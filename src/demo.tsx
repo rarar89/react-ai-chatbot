@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ChangeEvent, ReactNode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import useChatBot from './hooks/useChatBot';
 import { ChatBotProvider } from './context/ChatBotProvider';
@@ -10,7 +10,7 @@ const ChatBot = ({ children } : {children: ReactNode}) => {
 
   const {messages, sendMessage, isLoading, isError, error} = useChatBot();
 
-  const messageChangeHandler = (e:any) => setMessage(e.target.value);
+  const messageChangeHandler = (e:ChangeEvent<HTMLInputElement>) => setMessage(e.target.value);
 
   const sendMessageHandler = () => {
 
