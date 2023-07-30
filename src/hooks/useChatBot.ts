@@ -1,64 +1,27 @@
-import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-source';
-import { useChatBotState } from '../context/ChatBotProvider';
-import { Message } from '../types';
+import { useDispatch, useSelector } from 'react-redux';
+import sendMessageThunk from '../features/chatbot/sendMessage';
+import { AppDispatch, RootState } from '../reduxApp/store';
+import { clearMessages as clearMessagesAction, setApiEndpoint } from '../features/chatbot/chatbotSlice';
 
-export function useChatBot() {
-  const { state, dispatch } = useChatBotState();
-
-  let ctrl:AbortController;
-
-  const sendMessage = (question: string) => {
-    dispatch({ type: 'SEND_MESSAGE', payload: { message: question, type: 'user'} });
-    
-    ctrl = new AbortController();
-
-    const apiPath = state.apiEndpoint + '/chat';
-
-    try {
-      fetchEventSource(apiPath, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'mode': 'cors',
-        },
-        body: JSON.stringify({
-          question,
-          history: state.messages,
-        }),
-        signal: ctrl.signal,
-        onmessage: (event: EventSourceMessage) => {
-
-          if(event.data !== '[DONE]') {
-            const data = JSON.parse(event.data);
-            if(data.errorMessage) {
-              dispatch({ type: 'SET_ERROR', payload: data.errorMessage});
-              
-              return;
-            }
-          } 
-
-          const payload = {...event, question: question};
-          dispatch({type: 'ADD_DATA_BY_EVENT', payload: payload });
-        },
-        onerror(err) {
-
-          dispatch({ type: 'SET_ERROR', payload: err.message});
-          throw err; // rethrow to stop the operation
-        }
-      });
-    } catch (error) {
-      dispatch({ type: 'SET_ERROR', payload: error.message});
- 
-    }
-  };
+export default function useChatBot () {
+  const dispatch = useDispatch<AppDispatch>();
+  
+  const messages = useSelector((state:RootState) => state.chatbot.messages);
+  const isLoading = useSelector((state:RootState) => state.chatbot.isLoading);
+  const isError = useSelector((state:RootState) => state.chatbot.isError);
+  const error = useSelector((state:RootState) => state.chatbot.error);
+  
+  const sendMessage = (question: string) => dispatch(sendMessageThunk(question));
+  const clearMessages = () => dispatch(clearMessagesAction());
+  const setEndpoint = (endpoint: string) => dispatch(setApiEndpoint(endpoint));
 
   return {
-    messages: state.messages,
-    sendMessage,
-    isLoading: state.isLoading,
-    isError: state.isError,
-    error: state.error,
+    messages,
+    isLoading,
+    isError,
+    error,
+    setEndpoint,
+    clearMessages,
+    sendMessage
   };
-}
+};

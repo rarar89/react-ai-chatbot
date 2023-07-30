@@ -16,28 +16,13 @@ export type Message = {
   sourceDocs?: Document[];
 };
 
-export type State = {
+export interface IChatbotState {
   messages: Message[];
-  history?: [string, string, Document[]][];
+  history: [string, string, Document[]][];
   isLoading: boolean;
-  pending: string;
+  incoming: string;
   pendingSourceDocs: Document[];
   isError: boolean;
   error: string | null;
   apiEndpoint: string;
 };
-
-export type EventPayload = {
-  question: string;
-  id: string;
-  event: string;
-  data: string;
-  retry?: number;
-}
-
-export type Action = 
-  | { type: 'ADD_DATA_BY_EVENT'; payload: EventPayload }
-  | { type: 'SEND_MESSAGE'; payload: Message }
-  | { type: 'RECEIVE_MESSAGE'; payload: Message }
-  | { type: 'SET_LOADING'; payload: boolean }
-  | { type: 'SET_ERROR'; payload: string | null };

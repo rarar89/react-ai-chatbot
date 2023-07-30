@@ -41,7 +41,7 @@ const ChatBot = () => {
 
   const [message, setMessage] = useState<string>();
 
-  const [messages, sendMessage, incommingMessage, isLoading, isError, error] = useChatBot();
+  const {messages, sendMessage, pending, isLoading, isError, error} = useChatBot();
 
   const messageChangeHandler = (e) => {
 
@@ -69,9 +69,11 @@ const ChatBot = () => {
 Documentation
 
 useChatBot
-  - messages <[{type: 'bot' | 'user', message: string}]> - Discussion message are stored in this array
-  - sendMessage <(message: string)> - function used to send message
-  - incommingMessage string - message returned on-the-fly upon message generation. Store in a seperate component to not re-render whole chat component
-  - isLoading boolean - true while ai generates the message
-  - isError boolean - when error ocure 
-  - error string - error message
+  - messages: <[{type: 'bot' | 'user', message: string}]> - Discussion message are stored in this array
+  - sendMessage: <(message: string)> - function used to send message
+  - incomming: string - message returned on-the-fly upon message generation. Store in a seperate component to not re-render whole chat component
+  - isLoading: boolean - true while ai generates the message
+  - isError: boolean - when error ocure 
+  - error: string - error message
+  - clearMessages: ()=>void - clear all chat messages
+  - setEnpoint: (endpoint:string)=>void - set chat endpoint. Can be used to switch to a different chat
