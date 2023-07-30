@@ -2,7 +2,7 @@
 
 Simple React AI Chatbot based on GPT-3 or GPT-4 OpenAI models. This component provides hooks for chatbot interaction - sending and receiving messages. UI Styling is completely up to you!
 
-Chatlas.ai is used to set chat context!
+Chatlas.ai is used to set discussion context and settings!
 
 ## Install
 
@@ -24,7 +24,7 @@ or
 
 ```tsx
 import { ReactNode, useState } from 'react';
-import { ChatBotProvider, useChatBot, useIncoming } from 'react-ai-chatbot';
+import { ChatBotProvider, useChatBot, usePending } from 'react-ai-chatbot';
 
 const ChatBot = ({ children } : { children: ReactNode }) => {
 
@@ -56,7 +56,7 @@ const ChatBot = ({ children } : { children: ReactNode }) => {
 
 const Incoming = () => {
 
-  const { incoming } = useIncoming();
+  const { incoming } = usePending();
 
   return <>{ incoming }</>;
 }
@@ -83,4 +83,4 @@ const App = () => {
   - setEnpoint: (endpoint:string)=>void - set chat endpoint. Can be used to switch to a different chat
 
 **usePending**
-  - pending: string - use to get message while it's being generated, chatgpt style.
+  - pending: string - use to get message on-the-fly while it's being generated, chatgpt style.
