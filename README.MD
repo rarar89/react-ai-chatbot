@@ -2,9 +2,9 @@
 
 Simple React AI Chatbot based on GPT-3 or GPT-4 OpenAI models. This component provides hooks for chatbot interaction - sending and receiving messages. UI Styling is completely up to you!
 
-## Chatlas.ai is used to set chat context!
+Chatlas.ai is used to set chat context!
 
-Install
+## Install
 
 ``npm install react-chatbot``
 
