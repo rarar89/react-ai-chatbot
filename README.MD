@@ -54,18 +54,18 @@ const ChatBot = ({ children } : { children: ReactNode }) => {
   </div>
 }
 
-const Incoming = () => {
+const PendingMessage = () => {
 
-  const { incoming } = usePending();
+  const { pending } = usePending();
 
-  return <>{ incoming }</>;
+  return <>{ pending }</>;
 }
 
 const App = () => {
 
   return <ChatBotProvider endpoint='<your_discussion_endpoint>'>
     <ChatBot>
-      <Incoming />
+      <PendingMessage />
     </ChatBot>
   </ChatBotProvider>
 }
