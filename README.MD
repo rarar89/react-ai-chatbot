@@ -78,7 +78,6 @@ const App = () => {
 **useChatBot**
   - messages: <[{type: 'bot' | 'user', message: string}]> - Discussion message are stored in this array
   - sendMessage: <(message: string)> - function used to send message
-  - incomming: string - message returned on-the-fly upon message generation. Store in a seperate component to not re-render whole chat component
   - isLoading: boolean - true while ai generates the message
   - isError: boolean - when error ocure 
   - error: string - error message
