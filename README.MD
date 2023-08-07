@@ -4,6 +4,8 @@ Simple React AI Chatbot based on GPT-3 or GPT-4 OpenAI models. This component pr
 
 Chatlas.ai is used to set discussion context and settings!
 
+**You will need your own OpenAI API key to use this!**
+
 ## Install
 
 ``npm install react-chatbot``
@@ -14,7 +16,7 @@ or
 
 ## Usage instructions: 
 
-1. Singup at chatlas.ai
+1. Singup at chatlas.ai and add your OpenAI Key
 
 2. Start discussion either from documents or webpages. 
 
