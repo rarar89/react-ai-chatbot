@@ -22,7 +22,7 @@ or
 
 3. Enable discussion sharing (at right top side). Copy discussion endpoint.
 
-4. Example implementation:
+4. Example implementation (update <your_discussion_endpoint> accordingly):
 
 ```tsx
 import { ReactNode, useState, ChangeEvent } from 'react';
