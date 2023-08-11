@@ -4,7 +4,7 @@ import useChatBot from './hooks/useChatBot';
 import { ChatBotProvider } from './context/ChatBotProvider';
 import usePending from './hooks/usePending';
 
-const API_ENDPOINT = 'https://chatlas.ai:4333/api/discussion-public/903edde9-16ec-400e-ad56-14cfb711b9f6/tzDngBKdIaujas8QtGew96iT2SHshXdlf5wVaSHgIpygl8vgU0hdVbDxPt3DSXyQ'
+const API_ENDPOINT = 'https://chatlas.ai/api/discussion-public/903edde9-16ec-400e-ad56-14cfb711b9f6/tzDngBKdIaujas8QtGew96iT2SHshXdlf5wVaSHgIpygl8vgU0hdVbDxPt3DSXyQ'
 
 const ChatBot = ({ children } : {children: ReactNode}) => {
 
