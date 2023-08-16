@@ -2,14 +2,18 @@
   "name": "react-chatbot",
   "version": "0.5.4",
   "description": "React AI ChatBot using chatlas.ai service",
-  "main": "index.js",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx parcel src/index.html"
+    "watch": "npx parcel watch",
+    "build": "npx parcel build"
   },
   "author": "Raivis Studens",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/transformer-typescript-types": "2.9.3",
     "parcel": "^2.9.3",
     "process": "^0.11.10",
     "ts-loader": "^9.4.4",
