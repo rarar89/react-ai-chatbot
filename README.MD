@@ -79,10 +79,10 @@ const App = () => {
   - messages: <[{type: 'bot' | 'user', message: string}]> - Discussion message are stored in this array
   - sendMessage: <(message: string)> - function used to send message
   - isLoading: boolean - true while ai generates the message
-  - isError: boolean - when error ocure 
+  - isError: boolean - when error occurs 
   - error: string - error message
-  - clearMessages: ()=>void - clear all chat messages
-  - setEnpoint: (endpoint:string)=>void - set chat endpoint. Can be used to switch to a different chat
+  - clearMessages() - clear all chat messages
+  - setEnpoint(endpoint:string) - set chat endpoint. Can be used to switch to a different chat
 
 **usePending**
   - pending: string - use to get message on-the-fly while it's being generated, chatgpt style.
