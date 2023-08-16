@@ -40,7 +40,6 @@ export const chatbotSlice = createSlice({
       }
 
       return newState;
-;
     },
     clearIncoming: state => {
       return { ...state, incoming: '' };
