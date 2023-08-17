@@ -1,5 +1,5 @@
 {
-  "name": "react-chatbot",
+  "name": "react-ai-chatbot",
   "version": "0.5.4",
   "description": "React AI ChatBot using chatlas.ai service",
   "source": "src/index.ts",
