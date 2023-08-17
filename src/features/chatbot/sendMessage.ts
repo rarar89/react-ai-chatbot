@@ -10,7 +10,7 @@ export const sendMessage = createAsyncThunk('chatbot/sendMessage', async (questi
 
   try {
 
-    dispatch(clearError());
+    dispatch(clearError(undefined));
     dispatch(addMessage({
       message: question,
       type:'user'

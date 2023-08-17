@@ -48,7 +48,7 @@ const $b708373557f7a76e$export$2d216c7ce5e6c5d4 = (0, $hgUW1$createSlice)({
         clearIncoming: (state)=>{
             return {
                 ...state,
-                incoming: ""
+                pendingMessage: ""
             };
         },
         finishIncoming: (state, action)=>{
@@ -70,7 +70,7 @@ const $b708373557f7a76e$export$2d216c7ce5e6c5d4 = (0, $hgUW1$createSlice)({
                         sourceDocs: state.pendingSourceDocs
                     }
                 ],
-                incoming: "",
+                pendingMessage: "",
                 pendingSourceDocs: [],
                 loading: false
             };
@@ -82,7 +82,7 @@ const $b708373557f7a76e$export$2d216c7ce5e6c5d4 = (0, $hgUW1$createSlice)({
                 error: action.payload
             };
         },
-        clearError: (state)=>{
+        clearError: (state, action)=>{
             return {
                 ...state,
                 isError: false,
@@ -95,7 +95,7 @@ const $b708373557f7a76e$export$2d216c7ce5e6c5d4 = (0, $hgUW1$createSlice)({
                 isLoading: action.payload
             };
         },
-        clearMessages: (state)=>{
+        clearMessages: (state, action)=>{
             return {
                 ...state,
                 messages: []
@@ -152,7 +152,7 @@ const $6905464cc58aaec6$export$465cb47180de50f0 = (0, $hgUW1$createAsyncThunk)("
     const { apiEndpoint: apiEndpoint, history: history } = getState().chatbot;
     const apiPath = apiEndpoint + "/chat";
     try {
-        dispatch((0, $b708373557f7a76e$export$a15ba4bdf59dacc9)());
+        dispatch((0, $b708373557f7a76e$export$a15ba4bdf59dacc9)(undefined));
         dispatch((0, $b708373557f7a76e$export$16fdb433d434f08)({
             message: question,
             type: "user"
@@ -200,7 +200,7 @@ function $105133afc1787036$export$2e2bcd8739ae039() {
     const isError = (0, $hgUW1$useSelector)((state)=>state.chatbot.isError);
     const error = (0, $hgUW1$useSelector)((state)=>state.chatbot.error);
     const sendMessage = (question)=>dispatch((0, $6905464cc58aaec6$export$2e2bcd8739ae039)(question));
-    const clearMessages = ()=>dispatch((0, $b708373557f7a76e$export$f2434643f2abff11)());
+    const clearMessages = ()=>dispatch((0, $b708373557f7a76e$export$f2434643f2abff11)(undefined));
     const setEndpoint = (endpoint)=>dispatch((0, $b708373557f7a76e$export$8e00fdfb3569f0ac)(endpoint));
     return {
         messages: messages,

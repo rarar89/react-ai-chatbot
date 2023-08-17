@@ -12,7 +12,7 @@ export default function useChatBot () {
   const error = useSelector((state:RootState) => state.chatbot.error);
   
   const sendMessage = (question: string) => dispatch(sendMessageThunk(question));
-  const clearMessages = () => dispatch(clearMessagesAction());
+  const clearMessages = () => dispatch(clearMessagesAction(undefined));
   const setEndpoint = (endpoint: string) => dispatch(setApiEndpoint(endpoint));
 
   return {

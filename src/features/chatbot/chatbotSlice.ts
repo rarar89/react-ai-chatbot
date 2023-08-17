@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction, Slice } from '@reduxjs/toolkit';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import { IChatbotState, Document, Message } from '../../types';
 
@@ -13,7 +13,7 @@ const initialState: IChatbotState = {
   apiEndpoint: null
 };
 
-export const chatbotSlice = createSlice({
+export const chatbotSlice: Slice<IChatbotState> = createSlice({
   name: 'chatbot',
   initialState,
   reducers: {
@@ -42,7 +42,7 @@ export const chatbotSlice = createSlice({
       return newState;
     },
     clearIncoming: state => {
-      return { ...state, incoming: '' };
+      return { ...state, pendingMessage: '' };
     },
     finishIncoming: (state, action: PayloadAction<Message>) => {
       
@@ -56,7 +56,7 @@ export const chatbotSlice = createSlice({
             sourceDocs: state.pendingSourceDocs as Document[],
           },
         ],
-        incoming: '',
+        pendingMessage: '',
         pendingSourceDocs: [],
         loading: false
       }};
@@ -65,13 +65,13 @@ export const chatbotSlice = createSlice({
     setError: (state, action: PayloadAction<string>) => {
       return { ...state, isError: true, error: action.payload };
     },
-    clearError: state => {
+    clearError: (state, action: PayloadAction<undefined>) => {
       return { ...state, isError: false, error: null };
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       return { ...state, isLoading: action.payload };
     },
-    clearMessages: (state) => {
+    clearMessages: (state, action: PayloadAction<undefined>) => {
       return { ...state, messages: [] };
     },
     setApiEndpoint: (state, action: PayloadAction<string>) => {

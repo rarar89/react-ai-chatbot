@@ -24,6 +24,9 @@ dependencies:
     version: 8.1.2(@types/react-dom@18.2.7)(@types/react@18.2.17)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
 
 devDependencies:
+  '@parcel/packager-ts':
+    specifier: 2.9.3
+    version: 2.9.3(@parcel/core@2.9.3)
   '@parcel/transformer-typescript-types':
     specifier: 2.9.3
     version: 2.9.3(@parcel/core@2.9.3)(typescript@5.1.6)
@@ -584,6 +587,15 @@ packages:
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
       posthtml: 0.16.6
+    transitivePeerDependencies:
+      - '@parcel/core'
+    dev: true
+
+  /@parcel/packager-ts@2.9.3(@parcel/core@2.9.3):
+    resolution: {integrity: sha512-Vd9dm1FqaFDw/kWCh95zgGS08HvIpSLg5Aa+AIhFiM0G+kpRSItcBSNJVwC7JKmLk1rmQhmQKoCKX26+nvyAzA==}
+    engines: {node: '>= 12.0.0', parcel: ^2.9.3}
+    dependencies:
+      '@parcel/plugin': 2.9.3(@parcel/core@2.9.3)
     transitivePeerDependencies:
       - '@parcel/core'
     dev: true

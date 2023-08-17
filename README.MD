@@ -30,7 +30,7 @@ import { ChatBotProvider, useChatBot, usePending } from 'react-ai-chatbot';
 
 const ChatBot = ({ children } : { children: ReactNode }) => {
 
-  const [ message, setMessage ] = useState<string>();
+  const [ message, setMessage ] = useState<string>('');
 
   const { messages, sendMessage, isLoading, isError, error } = useChatBot();
 

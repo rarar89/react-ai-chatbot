@@ -55,7 +55,7 @@ const $1844adcbe4abdd51$export$2d216c7ce5e6c5d4 = (0, $8zHUo$reduxjstoolkit.crea
         clearIncoming: (state)=>{
             return {
                 ...state,
-                incoming: ""
+                pendingMessage: ""
             };
         },
         finishIncoming: (state, action)=>{
@@ -77,7 +77,7 @@ const $1844adcbe4abdd51$export$2d216c7ce5e6c5d4 = (0, $8zHUo$reduxjstoolkit.crea
                         sourceDocs: state.pendingSourceDocs
                     }
                 ],
-                incoming: "",
+                pendingMessage: "",
                 pendingSourceDocs: [],
                 loading: false
             };
@@ -89,7 +89,7 @@ const $1844adcbe4abdd51$export$2d216c7ce5e6c5d4 = (0, $8zHUo$reduxjstoolkit.crea
                 error: action.payload
             };
         },
-        clearError: (state)=>{
+        clearError: (state, action)=>{
             return {
                 ...state,
                 isError: false,
@@ -102,7 +102,7 @@ const $1844adcbe4abdd51$export$2d216c7ce5e6c5d4 = (0, $8zHUo$reduxjstoolkit.crea
                 isLoading: action.payload
             };
         },
-        clearMessages: (state)=>{
+        clearMessages: (state, action)=>{
             return {
                 ...state,
                 messages: []
@@ -159,7 +159,7 @@ const $82b08bd8b88cb9fd$export$465cb47180de50f0 = (0, $8zHUo$reduxjstoolkit.crea
     const { apiEndpoint: apiEndpoint, history: history } = getState().chatbot;
     const apiPath = apiEndpoint + "/chat";
     try {
-        dispatch((0, $1844adcbe4abdd51$export$a15ba4bdf59dacc9)());
+        dispatch((0, $1844adcbe4abdd51$export$a15ba4bdf59dacc9)(undefined));
         dispatch((0, $1844adcbe4abdd51$export$16fdb433d434f08)({
             message: question,
             type: "user"
@@ -207,7 +207,7 @@ function $e75ae738e7284e2d$export$2e2bcd8739ae039() {
     const isError = (0, $8zHUo$reactredux.useSelector)((state)=>state.chatbot.isError);
     const error = (0, $8zHUo$reactredux.useSelector)((state)=>state.chatbot.error);
     const sendMessage = (question)=>dispatch((0, $82b08bd8b88cb9fd$export$2e2bcd8739ae039)(question));
-    const clearMessages = ()=>dispatch((0, $1844adcbe4abdd51$export$f2434643f2abff11)());
+    const clearMessages = ()=>dispatch((0, $1844adcbe4abdd51$export$f2434643f2abff11)(undefined));
     const setEndpoint = (endpoint)=>dispatch((0, $1844adcbe4abdd51$export$8e00fdfb3569f0ac)(endpoint));
     return {
         messages: messages,
