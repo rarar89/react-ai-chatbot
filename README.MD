@@ -82,7 +82,7 @@ const App = () => {
   - isError: boolean - when error occurs 
   - error: string - error message
   - clearMessages() - clear all chat messages
-  - setEnpoint(endpoint:string) - set chat endpoint. Can be used to switch to a different chat
+  - setEndpoint(endpoint:string) - set chat endpoint. Can be used to switch to a different chat
 
 **usePending**
   - pending: string - use to get message on-the-fly while it's being generated, chatgpt style.
