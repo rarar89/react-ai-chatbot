@@ -8,11 +8,11 @@ Simple React AI Chatbot based on GPT-3 or GPT-4 OpenAI models to chat with your 
 
 ## Install
 
-``npm install react-chatbot``
+``npm install react-ai-chatbot``
 
 or
 
-``yarn install react-chatbot``
+``yarn install react-ai-chatbot``
 
 ## Usage instructions: 
 
